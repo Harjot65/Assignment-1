@@ -1,0 +1,92 @@
+import java.util.Stack;
+
+class Book {
+    String title;
+    String author;
+    String isbn;
+
+    public Book(String title, String author, String isbn) {
+        this.title = title;
+        this.author = author;
+        this.isbn = isbn;
+    }
+    
+    public String getAuthor() {
+        return author;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+}
+
+class BookStack {
+    private Stack<Book> stack;
+
+    public BookStack() {
+        stack = new Stack<>();
+    }
+
+    public void push(Book book) {
+        stack.push(book);
+    }
+
+    public Book pop() {
+        return stack.pop();
+    }
+
+    public boolean isEmpty() {
+        return stack.isEmpty();
+    }
+
+    public int size() {
+        return stack.size();
+    }
+
+    public Book peek() {
+        return stack.peek();
+    }
+
+    public void reportBookTitles() {
+        System.out.println("Titles of Books in the Stack:");
+        Stack<Book> tempStack = new Stack<>();
+        while (!stack.isEmpty()) {
+            Book book = stack.pop();
+            System.out.println("Title: " + book.title + ", Author: " + book.author + ", ISBN: " + book.isbn);
+            tempStack.push(book);
+        }
+        while (!tempStack.isEmpty()) {
+            stack.push(tempStack.pop());
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        BookStack bookStack = new BookStack();
+        
+        Book book1 = new Book("Book1: New Beginning", "Author1", "978-0000000001");
+        Book book2 = new Book("Book2: Journey of Hope", "Author2", "978-0000000002");
+        Book book3 = new Book("Book3: The Enigma", "Author3", "978-0000000003");
+        Book book4 = new Book("Book4: Beyond the Stars", "Author4", "978-0000000004");
+        Book book5 = new Book("Book5: Whispering Woods", "Author5", "978-0000000005");
+        Book book6 = new Book("Book6: Shadows of Time", "Author6", "978-0000000006");
+        Book book7 = new Book("Book7: Legends Awaken", "Author7", "978-0000000007");
+        Book book8 = new Book("Book8: Symphony of Secrets", "Author8", "978-0000000008");
+        Book book9 = new Book("Book9: Echoes of Eternity", "Author9", "978-0000000009");
+        Book book10 = new Book("Book10: The Final Frontier", "Author10", "978-0000000010");
+
+        bookStack.push(book1);
+        bookStack.push(book2);
+        bookStack.push(book3);
+        bookStack.push(book4);
+        bookStack.push(book5);
+        bookStack.push(book6);
+        bookStack.push(book7);
+        bookStack.push(book8);
+        bookStack.push(book9);
+        bookStack.push(book10);
+
+        bookStack.reportBookTitles();
+    }
+}
